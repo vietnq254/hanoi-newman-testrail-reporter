@@ -1,16 +1,23 @@
-# newman-reporter-testrail
+# TestRail Reporter for newman
 
-TestRail reporter for Newman.
+[![version](https://img.shields.io/npm/v/newman-reporter-testrail-e2e.svg)](https://www.npmjs.com/package/newman-reporter-testrail-e2e)
+[![downloads](https://img.shields.io/npm/dt/newman-reporter-testrail-e2e.svg)](https://www.npmjs.com/package/newman-reporter-testrail-e2e)
+[![MIT License](https://img.shields.io/github/license/billylam/newman-reporter-testrail.svg)](https://github.com/billylam/newman-reporter-testrail/blob/master/LICENSE)
 
-## Installation
+Publishes [newman](https://github.com/postmanlabs/newman/) runs on TestRail.
 
-`npm install newman-reporter-testrail --global`
+## Install
+> The installation should be global if Newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local installation)
+
+```shell
+$ npm install -g newman-reporter-testrail-e2e
+```
 
 ## Usage
 
 ### Prefix all test assertions you wish to map with the test number.
 Include the letter C. You may map more than one test case to an assertion.
-```
+```Javascript
 pm.test("C226750 C226746 Status code is 200", function () {
     pm.response.to.have.status(200);
 });
@@ -20,25 +27,47 @@ pm.test("C226750 C226746 Status code is 200", function () {
 
 | Environment Variable | Description |
 | --- | --- |
-| TESTRAIL_DOMAIN | TestRail domain.  Do not include protocol. |
+| TESTRAIL_DOMAIN | Domain name of your TestRail instance (e.g. _instance.testrail.com_). |
 | TESTRAIL_USERNAME | TestRail username / email. |
-| TESTRAIL_APIKEY | TestRail [API key](http://docs.gurock.com/testrail-api2/accessing#username_and_api_key). |
-| TESTRAIL_PROJECTID | TestRail project id. |
-| TESTRAIL_RUNID (optional) | TestRail run id.  Update a specific run instead of creating a new run.  Can use the string "latest" to update latest run. |
-| TESTRAIL_SUITEID (optional) |TestRail suite id.  Mandatory in multi-suite projects.  Do not use in single-suite projects. |
-| TESTRAIL_TITLE (optional) | Title of test run to create. |
-
-You can use [direnv](https://github.com/direnv/direnv) to easily maintain directory-specific options.
-
-You may also set some or all of these variables using bash exports.
+| TESTRAIL_PASSWORD | TestRail password or [API key](http://docs.gurock.com/testrail-api2/accessing#username_and_api_key). |
+| TESTRAIL_PROJECT_ID | TestRail project id. |
+| TESTRAIL_RUN_ID (optional) | TestRail run id.  Update a specific run instead of creating a new run. If this variable is not set then a new TestRun will be created. |
+| TESTRAIL_SUITE_ID (optional) |TestRail suite id. |
+| TESTRAIL_RUN_NAME (optional) |New TestRun name. It is used in case no TESTRAIL_RUN_ID. |
 
 ### Run newman with the reporter option
-`-r testrail`
+`-r testrail-hanoi`
 
 Example:
 
+```shell
+TESTRAIL_DOMAIN=example.testrail.com
+TESTRAIL_USERNAME=user_name
+TESTRAIL_PASSWORD=password_or_key
+TESTRAIL_PROJECT_ID=99
+TESTRAIL_RUN_ID=20
+
+newman run collection.json -r testrail-hanoi
 ```
-TESTRAIL_DOMAIN=example.testrail.com TESTRAIL_USERNAME=exampleuser 
-TESTRAIL_APIKEY=yourkey TESTRAIL_PROJECTID=99 TESTRAIL_TITLE="Dev-API Regression" 
-newman run my-collection.postman_collection.json -r testrail,cli
-```
+
+## TestRail Settings
+
+To increase security, the TestRail team suggests using an API key instead of a password. You can see how to generate an API key [here](http://docs.gurock.com/testrail-api2/accessing#username_and_api_key).
+
+If you maintain your own TestRail instance on your own server, it is recommended to [enable HTTPS for your TestRail installation](http://docs.gurock.com/testrail-admin/admin-securing#using_https).
+
+For TestRail hosted accounts maintained by [Gurock](http://www.gurock.com/), all accounts will automatically use HTTPS.
+
+You can read the whole TestRail documentation [here](http://docs.gurock.com/).
+
+## Author
+
+NGUYEN Viet - [github](https://github.com/vietnq254)
+
+## License
+
+This project is licensed under the [MIT license](/LICENSE).
+
+## Acknowledgments
+
+* [billylamv](https://github.com/billylam), author of the [newman-reporter-testrail](https://github.com/billylam/newman-reporter-testrail) repository that was cloned.
