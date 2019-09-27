@@ -1,14 +1,16 @@
 {
-  "name": "newman-reporter-testrail",
-  "version": "1.0.9",
+  "name": "newman-reporter-testrail-e2e",
+  "version": "1.0.10",
   "description": "TestRail reporter for Newman",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Billy Lam <3700437+billylam@users.noreply.github.com>",
+  "author": "NGUYEN Viet <vietnq254@live.com>",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "moment": "^2.24.0",
     "sync-request": "^6.0.0"
   },
   "devDependencies": {
@@ -29,10 +31,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/billylam/newman-reporter-testrail.git"
+    "url": "git+https://github.com/vietnq254/newman-reporter-testrail-e2e.git"
   },
   "bugs": {
-    "url": "https://github.com/billylam/newman-reporter-testrail/issues"
+    "url": "https://github.com/vietnq254/newman-reporter-testrail-e2e/issues"
   },
-  "homepage": "https://github.com/billylam/newman-reporter-testrail#readme"
+  "homepage": "https://github.com/vietnq254/newman-reporter-testrail-e2e#readme"
 }
