@@ -2,7 +2,7 @@
 
 [![version](https://img.shields.io/npm/v/newman-reporter-testrail-e2e.svg)](https://www.npmjs.com/package/newman-reporter-testrail-e2e)
 [![downloads](https://img.shields.io/npm/dt/newman-reporter-testrail-e2e.svg)](https://www.npmjs.com/package/newman-reporter-testrail-e2e)
-[![MIT License](https://img.shields.io/github/license/billylam/newman-reporter-testrail.svg)](https://github.com/billylam/newman-reporter-testrail/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/github/license/vietnq254/newman-reporter-testrail-e2e.svg)](https://github.com/vietnq254/newman-reporter-testrail-e2e/blob/master/README.md)
 
 Publishes [newman](https://github.com/postmanlabs/newman/) runs on TestRail.
 
@@ -22,7 +22,13 @@ pm.test("C226750 C226746 Status code is 200", function () {
     pm.response.to.have.status(200);
 });
 ```
-
+Add defect ID for specific test:
+```Javascript
+// pattern 'postman-defect=<defect_id>'
+pm.test("C226750 C226746 Status code is 200 postman-defect=NCT-1234", function () {
+    pm.response.to.have.status(200);
+});
+```
 ### Export the following environment variables.
 
 | Environment Variable | Description |
@@ -34,6 +40,7 @@ pm.test("C226750 C226746 Status code is 200", function () {
 | TESTRAIL_RUN_ID (optional) | TestRail run id.  Update a specific run instead of creating a new run. If this variable is not set then a new TestRun will be created. |
 | TESTRAIL_SUITE_ID (optional) |TestRail suite id. |
 | TESTRAIL_RUN_NAME (optional) |New TestRun name. It is used in case no TESTRAIL_RUN_ID. |
+| CUSTOM_COMMENT (optional) |Custom comment. It is be added with error comment for test result. |
 
 ### Run newman with the reporter option
 `-r testrail-e2e`
