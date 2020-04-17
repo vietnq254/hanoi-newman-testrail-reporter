@@ -4,7 +4,7 @@
         "no-console": 0,
         "no-unused-vars": 0,
         "no-plusplus": [
-            2,
+            4,
             {
               "allowForLoopAfterthoughts": true
             }
